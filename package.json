@@ -1,0 +1,73 @@
+{
+  "name": "node-typescript-boilerplate",
+  "version": "1.0.0",
+  "description": "Simple NodeJS starter with Typescript configs.",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "parcel build src/main.ts --target node",
+    "dev": "concurrently --handle-input \"wait-on dist/main.js && nodemon\" \"tsc -w -p tsconfig.build.json\" ",
+    "debug": "nodemon --config nodemon-debug.json",
+    "start": "node dist/main.js",
+    "prestart": "rimraf dist && npm run build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json -c tslint.json",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cov": "jest --coverage",
+    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
+    "test:e2e": "jest --config ./test/jest-e2e.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.noxionx.com:boilerplate/node-typescript-boilerplate.git"
+  },
+  "keywords": [
+    "node",
+    "boilerplate",
+    "typescript"
+  ],
+  "author": "nox35400@gmail.com",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/jest": "^24.0.14",
+    "@types/node": "^12.0.8",
+    "concurrently": "^4.1.0",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "parcel-bundler": "^1.12.3",
+    "prettier": "^1.18.2",
+    "rimraf": "^2.6.3",
+    "supertest": "^4.0.2",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.17.0",
+    "typescript": "^3.5.2",
+    "wait-on": "^3.2.0"
+  },
+  "dependencies": {
+    "@slack/rtm-api": "^5.0.0",
+    "@slack/web-api": "^5.0.0",
+    "@types/slack-node": "^0.1.2",
+    "dayjs": "^1.8.13",
+    "dotenv": "^7.0.0",
+    "gitlab": "^4.5.1",
+    "https-proxy-agent": "^2.2.1",
+    "lowdb": "^1.0.0",
+    "node-cron": "^2.0.3"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "src",
+    "testRegex": ".spec.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
+  }
+}

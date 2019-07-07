@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+    "mikestead.dotenv",
+    "dbaeumer.vscode-eslint",
+    "codezombiech.gitignore",
+    "eamodio.gitlens",
+    "xabikos.javascriptsnippets",
+    "eg2.vscode-npm-script",
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode",
+    "christian-kohler.npm-intellisense"
+  ]
+}
