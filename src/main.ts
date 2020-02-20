@@ -73,10 +73,13 @@ function getLibraryScore({
   if (library.signUp >= nbDays) {
     score = -Infinity;
   } else {
+    let effectiveDays = nbDays - library.signUp;
     let libraryBookScore = 0;
     library.bookIds.forEach(id => {
       libraryBookScore += bookScores[id];
     });
+    libraryBookScore =
+      libraryBookScore / library.bookIds.length / effectiveDays;
     score = libraryBookScore;
   }
 
@@ -86,17 +89,13 @@ function getLibraryScore({
 
 export async function readFile(filename: string): Promise<string> {
   return new Promise((resolve, reject) => {
-    fs.readFile(
-      `/mnt/d/TAF/HASHCODE/hashcode-2020/src/datasets/${filename}`,
-      'utf8',
-      (err, data) => {
-        if (err) {
-          reject(err.message);
-        } else {
-          resolve(data);
-        }
-      },
-    );
+    fs.readFile(`./src/datasets/${filename}`, 'utf8', (err, data) => {
+      if (err) {
+        reject(err.message);
+      } else {
+        resolve(data);
+      }
+    });
   });
 }
 
@@ -104,7 +103,7 @@ export async function writeFile(
   filename: string,
   output: Output,
 ): Promise<void> {
-  const fullFilename = `/mnt/d/TAF/HASHCODE/hashcode-2020/out/${filename}`;
+  const fullFilename = `./out/${filename}`;
   return new Promise((resolve, reject) => {
     let str: string = `${output.nbLibraries}\n`;
     output.libraries.forEach(l => {
