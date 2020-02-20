@@ -78,9 +78,9 @@ function getLibraryScore({
     library.bookIds.forEach(id => {
       libraryBookScore += bookScores[id];
     });
-    libraryBookScore =
-      libraryBookScore / library.bookIds.length / effectiveDays;
-    score = libraryBookScore;
+    const bookRateScore = effectiveDays * library.scanPerDay;
+    const bigScore = library.nbBooks / bookRateScore;
+    score = libraryBookScore / bigScore;
   }
 
   //console.timeEnd('getLibraryScore');
